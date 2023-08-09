@@ -4,7 +4,7 @@ const app = require('../src/index');
 describe('Test auth routes', () => {
     const users = require('./fixtures/users.json');
 
-    it('should return 201 created', async () => {
+    it('should return 201 created for successful signup', async () => {
         let userWithCompleteSignupData = users[0];
         const response = await request(app).post('/api/v1/auth/signup')
                 .send(userWithCompleteSignupData)
@@ -14,7 +14,7 @@ describe('Test auth routes', () => {
         expect(response.body.message).toBe("signup successful");                  
     });
 
-    it('should return 400 error', async () => {
+    it('should return 400 error if email is not provided', async () => {
         let userWithoutCompleteSignupData = users[1];
         const response = await request(app).post('/api/v1/auth/signup')
                 .send(userWithoutCompleteSignupData)
@@ -24,7 +24,7 @@ describe('Test auth routes', () => {
         expect(response.body.message).toBe("provide required fields");                  
     });
 
-    it('should return 201 created', async () => {
+    it('should return 201 created for success admin signup', async () => {
         let adminWithCompleteSignupData = users[4];
         const response = await request(app).post('/api/v1/auth/signup')
                 .send(adminWithCompleteSignupData)
@@ -34,7 +34,7 @@ describe('Test auth routes', () => {
         expect(response.body.message).toBe("signup successful");                  
     });
 
-    it('should return 200 success', async () => {
+    it('should return 200 success for successful login', async () => {
         let userWithCompleteLoginData = users[2];
         const response = await request(app).post('/api/v1/auth/login')
                 .send(userWithCompleteLoginData)
@@ -44,7 +44,7 @@ describe('Test auth routes', () => {
         expect(response.body).toHaveProperty("token");                  
     });
 
-    it('should return 401 unauthorized', async () => {
+    it('should return 401 unauthorized if incorrect login detail is passed', async () => {
         let userWithIncorrectLoginData = users[3];
         const response = await request(app).post('/api/v1/auth/login')
                 .send(userWithIncorrectLoginData)

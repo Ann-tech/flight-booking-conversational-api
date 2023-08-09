@@ -12,7 +12,7 @@ describe('Test flights routes', () => {
         ({ token } = response.body);
     })
 
-    it('should return 201 created', async () => {
+    it('should return 201 created for successfully scheduled flights', async () => {
         let flightWithCompleteData = flights[0];
 
         const response = await request(app).post('/api/v1/flights')
@@ -26,7 +26,7 @@ describe('Test flights routes', () => {
         expect(response.body.message).toBe("flight successfully scheduled");                  
     });
 
-    it('should return 201 created', async () => {
+    it('should return 201 created for successfully scheduled flights', async () => {
         let flightWithCompleteData = flights[2];
 
         const response = await request(app).post('/api/v1/flights')
@@ -40,8 +40,8 @@ describe('Test flights routes', () => {
         expect(response.body.message).toBe("flight successfully scheduled");                  
     });
 
-    it('should return 400 error', async () => {
-        let flightWithoutCompleteData = flights[1];
+    it('should return 400 error if flightName is missing', async () => {
+        let flightWithoutCompleteData = flights[2];
 
         const response = await request(app).post('/api/v1/flights')
                 .set({
@@ -54,7 +54,7 @@ describe('Test flights routes', () => {
         expect(response.body.message).toBe("provide required fields");                  
     });
 
-    it('should return 200 success', async () => {
+    it('should return 200 success for successfully updated flights', async () => {
         let updatedFlightData = flights[1];
 
         const response = await request(app).patch('/api/v1/flights/1')
@@ -68,7 +68,7 @@ describe('Test flights routes', () => {
         expect(response.body.message).toBe("flight successfully updated");                  
     });
     
-    it('should return 200 success', async () => {
+    it('should return 200 success to get all flights', async () => {
         const response = await request(app).get('/api/v1/flights')
                 .set({
                     "Authorization": `Bearer ${token}`
@@ -79,7 +79,7 @@ describe('Test flights routes', () => {
         expect(response.body.flights.length).toBe(2);                  
     });
 
-    it('should return 200 success', async () => {
+    it('should return 200 success when a flight is successfully deleted', async () => {
         const response = await request(app).delete('/api/v1/flights/1')
                 .set({
                     "Authorization": `Bearer ${token}`
