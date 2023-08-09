@@ -9,6 +9,9 @@
         "ticketPrice": 50000
     },
     {
+        "ticketPrice": 60000
+    },
+    {
         "departureCity": "Enugu",
         "arrivalCity": "Lagos",
         "departureTime": "August 10, 2023 10:00:00",

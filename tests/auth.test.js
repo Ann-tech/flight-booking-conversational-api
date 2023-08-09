@@ -4,7 +4,7 @@ const app = require('../src/index');
 describe('Test POST /api/v1/auth/signup', () => {
     const users = require('./fixtures/users.json');
 
-    it('should return 201 success', async () => {
+    it('should return 201 created', async () => {
         let userWithCompleteSignupData = users[0];
         const response = await request(app).post('/api/v1/auth/signup')
                 .send(userWithCompleteSignupData)
@@ -24,7 +24,7 @@ describe('Test POST /api/v1/auth/signup', () => {
         expect(response.body.message).toBe("provide required fields");                  
     });
 
-    it('should return 201 success', async () => {
+    it('should return 201 created', async () => {
         let adminWithCompleteSignupData = users[4];
         const response = await request(app).post('/api/v1/auth/signup')
                 .send(adminWithCompleteSignupData)

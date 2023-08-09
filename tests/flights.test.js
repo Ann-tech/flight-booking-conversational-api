@@ -12,8 +12,22 @@ describe('Test POST /api/v1/auth/signup', () => {
         ({ token } = response.body);
     })
 
-    it('should return 201 success', async () => {
+    it('should return 201 created', async () => {
         let flightWithCompleteData = flights[0];
+
+        const response = await request(app).post('/api/v1/flights')
+                .set({
+                    "Authorization": `Bearer ${token}`
+                })
+                .send(flightWithCompleteData)
+                .expect(201)
+                .expect("Content-Type", /json/);
+        expect(response.body.success).toBe(true);
+        expect(response.body.message).toBe("flight successfully scheduled");                  
+    });
+
+    it('should return 201 created', async () => {
+        let flightWithCompleteData = flights[2];
 
         const response = await request(app).post('/api/v1/flights')
                 .set({
@@ -38,6 +52,20 @@ describe('Test POST /api/v1/auth/signup', () => {
                 .expect("Content-Type", /json/);
         expect(response.body.success).toBe(false);
         expect(response.body.message).toBe("provide required fields");                  
+    });
+
+    it('should return 200 success', async () => {
+        let updatedFlightData = flights[1];
+
+        const response = await request(app).put('/api/v1/flights')
+                .set({
+                    "Authorization": `Bearer ${token}`
+                })
+                .send(updatedFlightData)
+                .expect(200)
+                .expect("Content-Type", /json/);
+        expect(response.body.success).toBe(true);
+        expect(response.body.message).toBe("flight successfully updated");                  
     });
     
 
