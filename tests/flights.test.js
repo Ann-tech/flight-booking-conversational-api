@@ -57,7 +57,7 @@ describe('Test flights routes', () => {
     it('should return 200 success', async () => {
         let updatedFlightData = flights[1];
 
-        const response = await request(app).put('/api/v1/flights/1')
+        const response = await request(app).patch('/api/v1/flights/1')
                 .set({
                     "Authorization": `Bearer ${token}`
                 })
