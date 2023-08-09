@@ -23,8 +23,7 @@ app.use(express.json());
 app.use( helmet() );
 
 app.get('/', (req, res, next) => {
-    blabla;
-    res.json( {success: true, message: "Welcome to our booking api"});
+    res.json( {success: true, message: 'Welcome to our booking api'});
 })
 
 if (process.env.NODE_ENV !== 'test') {
