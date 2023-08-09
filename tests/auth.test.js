@@ -15,13 +15,23 @@ describe('Test POST /api/v1/auth/signup', () => {
     });
 
     it('should return 400 error', async () => {
-        let userWithoutSignupCompleteData = users[1];
+        let userWithoutCompleteSignupData = users[1];
         const response = await request(app).post('/api/v1/auth/signup')
-                .send(userWithoutSignupCompleteData)
+                .send(userWithoutCompleteSignupData)
                 .expect(400)
                 .expect("Content-Type", /json/);
         expect(response.body.success).toBe(false);
         expect(response.body.message).toBe("provide required fields");                  
+    });
+
+    it('should return 201 success', async () => {
+        let adminWithCompleteSignupData = users[4];
+        const response = await request(app).post('/api/v1/auth/signup')
+                .send(adminWithCompleteSignupData)
+                .expect(201)
+                .expect("Content-Type", /json/);
+        expect(response.body.success).toBe(true);
+        expect(response.body.message).toBe("signup successful");                  
     });
 
     it('should return 200 success', async () => {

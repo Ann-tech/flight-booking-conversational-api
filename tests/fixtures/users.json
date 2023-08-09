@@ -19,7 +19,8 @@
     {
         "name": "oscar",
         "email": "oscar@gmail.com",
-        "password": "efg"
+        "password": "efg", 
+        "role": "admin"
     },
     {
         "email": "oscar@gmail.com",
