@@ -13,6 +13,10 @@
         "password": "abc"
     },
     {
+        "email": "ann@gmail.com",
+        "password": "c"
+    },
+    {
         "name": "oscar",
         "email": "oscar@gmail.com",
         "password": "efg"

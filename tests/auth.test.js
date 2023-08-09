@@ -33,4 +33,14 @@ describe('Test POST /api/v1/auth/signup', () => {
         expect(response.body.success).toBe(true);
         expect(response.body).toHaveProperty("token");                  
     });
+
+    it('should return 401 unauthorized', async () => {
+        let userWithIncorrectLoginData = users[3];
+        const response = await request(app).post('/api/v1/auth/login')
+                .send(userWithIncorrectLoginData)
+                .expect(401)
+                .expect("Content-Type", /json/);
+        expect(response.body.success).toBe(false);
+        expect(response.body.message).toHaveProperty("Invalid credentials");                  
+    });
 })
