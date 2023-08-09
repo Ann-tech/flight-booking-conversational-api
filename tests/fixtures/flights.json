@@ -9,6 +9,14 @@
         "ticketPrice": 50000
     },
     {
+        "departureCity": "Enugu",
+        "arrivalCity": "Lagos",
+        "departureTime": "August 10, 2023 10:00:00",
+        "arrivalTime": "August 10, 2023 11:00:00",
+        "availableSeats": 10,
+        "ticketPrice": 50000
+    },
+    {
         "flightName": "Arik Air Flight 101",
         "departureCity": "Abuja",
         "arrivalCity": "Lagos",
