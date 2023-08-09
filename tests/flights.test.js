@@ -79,4 +79,15 @@ describe('Test flights routes', () => {
         expect(response.body.flights.length).toBe(2);                  
     });
 
+    it('should return 200 success', async () => {
+        const response = await request(app).delete('/api/v1/flights/1')
+                .set({
+                    "Authorization": `Bearer ${token}`
+                })
+                .expect(200)
+                .expect("Content-Type", /json/);
+        expect(response.body.success).toBe(true);
+        expect(response.body.message).toBe("Flight successfully deleted");                  
+    });
+
 })
