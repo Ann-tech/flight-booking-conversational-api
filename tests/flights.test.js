@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../src/index');
 
-describe('Test POST /api/v1/auth/signup', () => {
+describe('Test flights routes', () => {
     const flights = require('./fixtures/flights.json');
     const users = require('./fixtures/users.json');
     let loginAsAdmin = users[5];
@@ -57,7 +57,7 @@ describe('Test POST /api/v1/auth/signup', () => {
     it('should return 200 success', async () => {
         let updatedFlightData = flights[1];
 
-        const response = await request(app).put('/api/v1/flights')
+        const response = await request(app).put('/api/v1/flights/1')
                 .set({
                     "Authorization": `Bearer ${token}`
                 })
@@ -68,5 +68,15 @@ describe('Test POST /api/v1/auth/signup', () => {
         expect(response.body.message).toBe("flight successfully updated");                  
     });
     
+    it('should return 200 success', async () => {
+        const response = await request(app).get('/api/v1/flights')
+                .set({
+                    "Authorization": `Bearer ${token}`
+                })
+                .expect(200)
+                .expect("Content-Type", /json/);
+        expect(response.body.success).toBe(true);
+        expect(response.body.flights.length).toBe(2);                  
+    });
 
 })

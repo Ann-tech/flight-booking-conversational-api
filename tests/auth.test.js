@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../src/index');
 
-describe('Test POST /api/v1/auth/signup', () => {
+describe('Test auth routes', () => {
     const users = require('./fixtures/users.json');
 
     it('should return 201 created', async () => {
