@@ -5,7 +5,10 @@
         "arrivalCity": "Lagos",
         "departureTime": "August 12, 2023 10:00:00",
         "arrivalTime": "August 12, 2023 11:00:00",
-        "numberOfPassengers": 2,
-        "ticketPrice": 1000
+        "numberOfPassengers": 2
+    },
+    {
+        "departureCity": "Lagos",
+        "arrivalCity": "Akwa Ibom"
     }
 ]

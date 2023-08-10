@@ -4,11 +4,11 @@ const app = require('../src/index');
 describe('Test bookings routes', () => {
     const bookings = require('./fixtures/bookings.json');
     const users = require('./fixtures/users.json');
-    let loginAsAdmin = users[5];
+    let user = users[2];
 
     beforeEach(async () => {
         const response = await request(app).post('/api/v1/auth/login')
-                .send(loginAsAdmin)
+                .send(user)
         ({ token } = response.body);
     })
 
@@ -24,6 +24,20 @@ describe('Test bookings routes', () => {
                 .expect("Content-Type", /json/);
         expect(response.body.success).toBe(true);
         expect(response.body.message).toBe("flight successfully booked");                  
+    });
+
+    it('should return 404 for unavailable flights', async () => {
+        let bookingDetails = bookings[1];
+
+        const response = await request(app).post('/api/v1/bookings')
+                .set({
+                    "Authorization": `Bearer ${token}`
+                })
+                .send(bookingDetails)
+                .expect(404)
+                .expect("Content-Type", /json/);
+        expect(response.body.success).toBe(false);
+        expect(response.body.message).toBe("No flight is available at the moment for that destination");                  
     });
 
     
