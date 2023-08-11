@@ -4,7 +4,7 @@ const FlightRouter = express.Router();
 FlightRouter.get('/', httpGetAllFlights);
 FlightRouter.get('/:id', httpGetFlightById);
 FlightRouter.post('/', httpCreateNewFlight);
-FlightRouter.put('/', httpUpdateFlightDetails);
+FlightRouter.put('/:id', httpUpdateFlightDetailsById);
 FlightRouter.delete('/', httpDeleteFlight);
 
 module.exports = FlightRouter;
