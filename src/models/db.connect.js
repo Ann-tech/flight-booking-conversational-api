@@ -1,5 +1,9 @@
-const dbConfig = require('../config/dbConfig');
 const { Sequelize, DataTypes } = require('sequelize');
+const sequelizeConnectionOptions = require('../config/sequelizeConfig');
+
+const dbConfig = require('../config/dbConfig');
+const User = require('./users.model');
+const Role = require('./roles.model');
 
 const sequelize = new Sequelize(
     dbConfig.database,
@@ -8,6 +12,9 @@ const sequelize = new Sequelize(
     {
         host: dbConfig.host,
         dialect: dbConfig.dialet,
+    },
+    {
+        ...sequelizeConnectionOptions
     }
 )
 
@@ -24,11 +31,12 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 // Add our tables
-db.books = require('./users.model')(sequelize, DataTypes);
+db.users = User(sequelize);
+db.roles = Role(sequelize);
 
 // sync all models
 // force: false will not drop the table if it already exists
-db.sequelize.sync({ force: false })
+db.sequelize.sync({ force: true })
     .then(() => {
         console.log('Database & tables synced');
     }).catch(err => {
@@ -36,3 +44,4 @@ db.sequelize.sync({ force: false })
     })
 
 module.exports = db;
+

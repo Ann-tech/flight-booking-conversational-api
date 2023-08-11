@@ -7,6 +7,8 @@ const morganMiddleware = require('./middlewares/morgan.middleware');
 
 const logger = require('./logging/logger');
 
+const db = require('./models/db.connect');
+
 require('dotenv').config();
 
 // Add the morgan middleware
