@@ -8,7 +8,7 @@ const morganMiddleware = require('./middlewares/morgan.middleware');
 const logger = require('./logging/logger');
 
 const authRouter = require('./routes/auth.route');
-const FlightRouter = require('./routes/flight.route');
+const FlightRouter = require('./routes/flights.route');
 
 require('dotenv').config();
 

@@ -11,15 +11,29 @@ function User(sequelize) {
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
-            validator: {
-                isEmail: true,
-                isLowercase: true
+            unique: {
+                msg: 'email already exists'
+            },
+            validate: {
+                notNull: {
+                    msg: 'email field is required'
+                },
+                notEmpty: {
+                    msg: 'email field is required'
+                },
+                isEmail: {
+                    msg: 'please use a correct email format user@example.com'
+                }
             }
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: 'password field is required'
+                }
+            }
         },
         roleId: {
             type: DataTypes.INTEGER,

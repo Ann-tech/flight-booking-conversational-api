@@ -36,8 +36,8 @@ passport.use(
         },
         async (req, email, password, done) => {
             try {
-
-                const role = (req.body.role.toLowerCase() == "admin") ? 1 : 2;
+                email = email.toLowerCase();
+                const role = (req.body.role?.toLowerCase().trim() == "admin") ? 1 : 2;
                 const user = await User.create({email, password, roleId: role});
 
                 return done(null, user);
