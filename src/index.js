@@ -9,6 +9,7 @@ const logger = require('./logging/logger');
 
 const authRouter = require('./routes/auth.route');
 const FlightRouter = require('./routes/flights.route');
+const BookingRouter = require('./routes/bookings.route');
 
 require('dotenv').config();
 
@@ -36,6 +37,9 @@ app.use('/api/v1/auth', authRouter);
 
 //flights router
 app.use('/api/v1/flights', FlightRouter);
+
+//bookings router
+app.use('/api/v1/bookings', BookingRouterRouter);
 
 app.get('/', (req, res, next) => {
     res.json( {success: true, message: 'Welcome to our booking api'});
