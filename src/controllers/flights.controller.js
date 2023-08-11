@@ -46,6 +46,21 @@ async function httpUpdateFlightDetailsById(req, res, next) {
     }
 }
 
+async function httpDeleteFlight(req, res, next) {
+    try {
+        const id = req.params.id;
+        const flight = await Flight.delete({
+            where: {
+                ...req.body
+            }
+        })
+        res.status(200).json({success: true, message: 'flight successfully deleted'})
+    } catch(err) {
+        console.log(err);
+        next(err);
+    }
+}
+
 
 module.exports = {
     httpGetAllFlights,
