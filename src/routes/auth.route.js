@@ -7,8 +7,8 @@ require('dotenv').config();
 
 authRouter.post('/signup', passport.authenticate('signup', { session: false }), async (req, res, next) => {
     res.json({
-        message: 'Signup successful',
-        user: req.user
+        success: true,
+        message: 'signup successful'
     });
 });
 authRouter.post('/login', async (req, res, next) => {

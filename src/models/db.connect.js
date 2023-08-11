@@ -34,8 +34,12 @@ db.roles = Role(sequelize);
 // sync all models
 // force: false will not drop the table if it already exists
 db.sequelize.sync({ force: true })
-    .then(() => {
+    .then(async () => {
         console.log('Database & tables synced');
+
+        //add roles to db
+        await db.roles.create({name: "admin"});
+        await db.roles.create({name: "user"});
     }).catch(err => {
         console.error('Unable to sync database & tables:', err);
     })

@@ -31,11 +31,14 @@ passport.use(
     new localStrategy(
         {
             usernameField: 'email',
-            passwordField: 'password'
+            passwordField: 'password',
+            passReqToCallback: true
         },
-        async (email, password, done) => {
+        async (req, email, password, done) => {
             try {
-                const user = await User.create({email, password});
+
+                const role = (req.body.role.toLowerCase() == "admin") ? 1 : 2;
+                const user = await User.create({email, password, roleId: role});
 
                 return done(null, user);
             } catch (error) {
