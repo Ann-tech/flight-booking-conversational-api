@@ -22,6 +22,7 @@ const logger = require('../logging/logger')
 // }
 
 async function errorHandler(err, req, res, next) {
+    console.log(err);
     logger.error("An error has occured")
     logger.error(err.message)
     try {

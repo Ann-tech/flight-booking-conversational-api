@@ -1,5 +1,4 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelizeConnectionOptions = require('../config/sequelizeConfig');
+const { Sequelize } = require('sequelize');
 
 const dbConfig = require('../config/dbConfig');
 const User = require('./users.model');
@@ -12,9 +11,6 @@ const sequelize = new Sequelize(
     {
         host: dbConfig.host,
         dialect: dbConfig.dialet,
-    },
-    {
-        ...sequelizeConnectionOptions
     }
 )
 
@@ -34,6 +30,7 @@ db.Sequelize = Sequelize;
 db.users = User(sequelize);
 db.roles = Role(sequelize);
 
+
 // sync all models
 // force: false will not drop the table if it already exists
 db.sequelize.sync({ force: true })
@@ -43,5 +40,8 @@ db.sequelize.sync({ force: true })
         console.error('Unable to sync database & tables:', err);
     })
 
-module.exports = db;
+module.exports = {
+    db,
+    User: db.users
+};
 

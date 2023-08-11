@@ -20,12 +20,17 @@
   },
   "homepage": "https://github.com/Ann-tech/flight-booking-conversational-api#readme",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.1",
     "morgan": "^1.10.0",
     "mysql2": "^3.6.0",
-    "sequelize-bcrypt": "^1.2.0",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
+    "sequelize": "^6.32.1",
     "winston": "^3.10.0"
   },
   "devDependencies": {
