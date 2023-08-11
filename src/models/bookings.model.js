@@ -46,4 +46,4 @@ function Booking(sequelize) {
     return BookingSchema;
 }
 
-module.exports = Flight;
+module.exports = Booking;

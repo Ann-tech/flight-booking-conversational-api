@@ -3,6 +3,8 @@ const { Sequelize } = require('sequelize');
 const dbConfig = require('../config/dbConfig');
 const User = require('./users.model');
 const Role = require('./roles.model');
+const Flight = require('./flights.model');
+const Booking = require('./bookings.model');
 
 const sequelize = new Sequelize(
     dbConfig.database,
@@ -29,6 +31,8 @@ db.Sequelize = Sequelize;
 // Add our tables
 db.users = User(sequelize);
 db.roles = Role(sequelize);
+db.flights = Flight(sequelize);
+db.bookings = Booking(sequelize);
 
 
 // sync all models
@@ -46,6 +50,8 @@ db.sequelize.sync({ force: true })
 
 module.exports = {
     db,
-    User: db.users
+    User: db.users,
+    Flight: db.flights,
+    Booking: db.bookings
 };
 

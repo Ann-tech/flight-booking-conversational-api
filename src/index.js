@@ -8,6 +8,7 @@ const morganMiddleware = require('./middlewares/morgan.middleware');
 const logger = require('./logging/logger');
 
 const authRouter = require('./routes/auth.route');
+const FlightRouter = require('./routes/flight.route');
 
 require('dotenv').config();
 
@@ -30,7 +31,11 @@ const { db } = require('./models/db.connect');
 // Signup and login authentication middleware
 require("./authentication/auth");
 
+//auth router
 app.use('/api/v1/auth', authRouter);
+
+//flights router
+app.use('/api/v1/flights', FlightRouter);
 
 app.get('/', (req, res, next) => {
     res.json( {success: true, message: 'Welcome to our booking api'});
