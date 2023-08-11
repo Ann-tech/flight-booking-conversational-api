@@ -21,26 +21,21 @@ function Flight(sequelize) {
                 isLowercase: true
             }
         },
-        arrivalTime: {
-            type: DataTypes.STRING,
+        departureTime: {
+            type: DataTypes.DATE,
             allowNull: false,
-            validator: {
-                isLowercase: true
-            }
+        },
+        arrivalTime: {
+            type: DataTypes.DATE,
+            allowNull: false,
         },
         availableSeats: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-            validator: {
-                isLowercase: true
-            }
+            allowNull: false
         },
         ticketPrice: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-            validator: {
-                isLowercase: true
-            }
+            allowNull: false
         }
     }, {
         tableName: 'flights',
