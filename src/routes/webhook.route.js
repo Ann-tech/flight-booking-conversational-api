@@ -3,9 +3,7 @@ const webhookRoute = express.Router();
 
 webhookRoute.post('/', (req, res) => {
     console.log(req.body.result);
-    console.log(req);
-    console.log(res);
-    return res.json(result.body);
+    return res.json(req.body);
 })
 
 module.exports = webhookRoute;
