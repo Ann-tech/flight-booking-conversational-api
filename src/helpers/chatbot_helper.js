@@ -22,13 +22,11 @@ async function runSample(projectId = PROJECT_ID, message) {
       },
     };
     const responses = await sessionClient.detectIntent(request);
-
-    console.log(responses);
   
     const result = responses[0].queryResult;
   
     return responses[0].queryResult;
-  }
+}
 
 module.exports = {
   runSample

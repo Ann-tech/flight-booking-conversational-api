@@ -4,7 +4,8 @@ const formatFlightData = require('../utils/formatFlightData')
 async function httpGetAllFlights(req, res, next) {
     try {
         const flights = await Flight.findAll();
-        res.status(200).json({success: true, flights })
+        console.log(flights);
+        return res.status(200).json({success: true, flights })
     } catch(err) {
         console.log(err);
         next(err);
