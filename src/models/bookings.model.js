@@ -25,18 +25,12 @@ function Booking(sequelize) {
         },
         bookingDate: {
             type: DataTypes.DATE,
-            allowNull: false,
-            default: Date.now(),
-            validate: {
-                notNull: {
-                    msg: 'bookingDate field is required'
-                }
-            }
+            defaultValue: DataTypes.NOW
         },
         status: {
             type: DataTypes.ENUM('confirmed', 'pending', 'canceled'),
             allowNull: false,
-            default: 'pending',
+            defaultValue: 'pending',
             validate: {
                 notNull: {
                     msg: 'status field is required'
@@ -48,18 +42,12 @@ function Booking(sequelize) {
             allowNull: false,
             validate: {
                 notNull: {
-                    msg: 'passenger field is required'
+                    msg: 'passengerCount field is required'
                 }
             }
         },
         totalPrice: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                notNull: {
-                    msg: 'totalPrice field is required'
-                }
-            }
+            type: DataTypes.INTEGER
         }
     }, {
         tableName: 'Bookings',

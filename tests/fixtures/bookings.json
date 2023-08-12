@@ -1,14 +1,11 @@
 [
     {
         "flightId": 1,
-        "departureCity": "Enugu",
-        "arrivalCity": "Lagos",
-        "departureTime": "August 12, 2023 10:00:00",
-        "arrivalTime": "August 12, 2023 11:00:00",
-        "numberOfPassengers": 2
+        "bookingDate": "August 20, 2023",
+        "status": "pending",
+        "passengerCount": 2
     },
     {
-        "departureCity": "Lagos",
-        "arrivalCity": "Akwa Ibom"
+        "status": "confirmed"
     }
 ]

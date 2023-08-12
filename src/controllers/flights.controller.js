@@ -29,7 +29,7 @@ async function httpCreateNewFlight(req, res, next) {
     try {
         const flightData = formatFlightData(req.body);
         const flight = await Flight.create(flightData);
-        res.status(201).json({success: true, message: 'flight successfully scheduled'})
+        res.status(201).json({success: true, message: 'flight successfully scheduled'});
     } catch(err) {
         console.log(err);
         next(err);

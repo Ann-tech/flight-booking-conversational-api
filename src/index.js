@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const helmet = require('helmet');
+const passport = require('passport');
 
 const errorHandlerMiddleware = require('./middlewares/errorHandler.middleware')
 const morganMiddleware = require('./middlewares/morgan.middleware');
@@ -36,10 +37,10 @@ require("./authentication/auth");
 app.use('/api/v1/auth', authRouter);
 
 //flights router
-app.use('/api/v1/flights', FlightRouter);
+app.use('/api/v1/flights', passport.authenticate('jwt', { session: false }), FlightRouter);
 
 //bookings router
-app.use('/api/v1/bookings', BookingRouterRouter);
+app.use('/api/v1/bookings', passport.authenticate('jwt', { session: false }), BookingRouter);
 
 app.get('/', (req, res, next) => {
     res.json( {success: true, message: 'Welcome to our booking api'});

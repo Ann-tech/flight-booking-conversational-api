@@ -3,15 +3,16 @@ const BookingRouter = express.Router();
 
 const { 
     httpGetAllBookings, 
-    httpGetBasedOnCriteria, 
+    httpGetBookedFlight, 
     httpBookFlight,
-    httpCancelBooking
-} = require('../controllers/flights.controller');
+    httpUpdateBookingStatus
+} = require('../controllers/bookings.controllers');
+
 
 BookingRouter.get('/', httpGetAllBookings);
-BookingRouter.get('/', httpGetBasedOnCriteria);
-BookingRouter.put('/', httpBookFlight);
-BookingRouter.patch('/:id', httpCancelBooking);
+BookingRouter.get('/:id', httpGetBookedFlight);
+BookingRouter.post('/', httpBookFlight);
+BookingRouter.patch('/:id', httpUpdateBookingStatus);
 
 
 module.exports = BookingRouter;
