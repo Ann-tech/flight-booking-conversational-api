@@ -1,8 +1,9 @@
 const express = require('express');
 const webhookRoute = express.Router();
 
-const { processRequest } = require('../controllers/processRequest.controller');
 
-webhookRoute.post('/', processRequest);
+webhookRoute.post('/', (req, res) => {
+    res.status(201).json({message: "Processing request"});
+});
 
 module.exports = webhookRoute;
