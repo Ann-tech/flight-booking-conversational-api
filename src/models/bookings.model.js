@@ -50,7 +50,7 @@ function Booking(sequelize) {
             type: DataTypes.INTEGER
         }
     }, {
-        tableName: 'Bookings',
+        tableName: 'bookings',
     });
     
 
