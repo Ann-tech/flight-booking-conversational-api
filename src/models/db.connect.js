@@ -37,7 +37,7 @@ db.bookings = Booking(sequelize);
 
 // sync all models
 // force: false will not drop the table if it already exists
-db.sequelize.sync({ force: false })
+db.sequelize.sync({ force: true })
     .then(async () => {
         console.log('Database & tables synced');
 
