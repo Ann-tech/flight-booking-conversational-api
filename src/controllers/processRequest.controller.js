@@ -1,4 +1,4 @@
-const Flight = require("../models/db.connect")
+const { Flight } = require('../models/db.connect');
 
 async function processRequest(req, res, next) {
     if (req.body.queryResult?.action == "getAvailableFlights") {
