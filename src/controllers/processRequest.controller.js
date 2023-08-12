@@ -1,10 +1,15 @@
-const { httpGetAllFlights } = require('./flights.controller');
+const Flight = require("../models/flights.model")
 
 async function processRequest(req, res, next) {
-    console.log("hey")
     if (req.body.queryResult?.action == "getAvailableFlights") {
-        console.log("hello")
-        return httpGetAllFlights(req, res, next);
+        try {
+            const flights = await Flight.findAll();
+            console.log("hey, I got here")
+            return res.status(200).json({success: true, message: "Here is a list of all flights", flights });
+        } catch(err) {
+            console.log(err);
+            next(err);
+        }
     }
 }
 
