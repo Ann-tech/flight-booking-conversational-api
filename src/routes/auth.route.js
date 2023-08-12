@@ -32,7 +32,7 @@ authRouter.post('/login', async (req, res, next) => {
                     // DO NOT STORE PASSWORDS IN THE JWT!
                     const token = jwt.sign({ user: body }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-                    return res.json({ token });
+                    return res.json({ message: "login successful", token });
                 }
             );
         } catch (error) {
