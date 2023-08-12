@@ -2,7 +2,7 @@ const express = require('express');
 const webhookRoute = express.Router();
 
 webhookRoute.post('/', (req, res) => {
-    console.log(req.body.result);
+    console.log(req.body);
     return res.json(req.body);
 })
 
