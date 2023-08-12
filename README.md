@@ -475,7 +475,7 @@ Things implemented during this project
 - Twitter - [@OnyekaAnn1](https://twitter.com/OnyekaAnn1)
 - email - Onyekaann17@gmail.com
 
-Project Link: [Blog-api](https://github.com/Ann-tech/Blog-api)
+Project Link: [Conversational-api](https://github.com/Ann-tech/flight-booking-conversational-api)
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
