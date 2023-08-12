@@ -3,3 +3,7 @@ async function processRequest(req, res, next) {
         return httpGetAllFlights(req, res, next)
     }
 }
+
+module.exports = {
+    processRequest
+}
