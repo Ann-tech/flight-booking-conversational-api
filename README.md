@@ -400,6 +400,20 @@ Here are some sample messages
 
 ```json
 {
+    "message": "Hi"
+}
+```
+
+:point_down: Response
+
+```json
+{
+    "message": "Greetings! How can I assist?"
+}
+```
+
+```json
+{
     "message": "Are there flights available"
 }
 ```
