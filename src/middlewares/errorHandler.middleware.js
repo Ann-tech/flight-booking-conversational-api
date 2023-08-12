@@ -23,10 +23,10 @@ const handleValidationError = (err, res) => {
     if (errors.length == 1) {
         formattedErrors = errors.join(' ');
         formattedFields = fields.join(', ');
-        res.status(code).json({success: false, message: formattedErrors, field: formattedFields});
+        return res.status(code).json({success: false, message: formattedErrors, field: formattedFields});
     }
 
-    res.status(code).json({success: false, messages: errors, fields: fields});
+    return res.status(code).json({success: false, messages: errors, fields: fields});
 }
 
 async function errorHandler(err, req, res, next) {
@@ -35,7 +35,8 @@ async function errorHandler(err, req, res, next) {
     logger.error(err.message)
     try {
         if(err.name === 'SequelizeValidationError' || err.name == 'SequelizeUniqueConstraintError') return handleValidationError(err, res);
-        // if(err.code && err.code == 11000) return handleDuplicateKeyError(err, res);
+
+        if (err.message == "email or password is incorrect") return res.status(400).json({success: false, message: err.message})
         throw err;
     } catch(err) {
         res.status(500).json({success: false, message: 'An unknown error occurred.'});

@@ -36,13 +36,12 @@ passport.use(
         },
         async (req, email, password, done) => {
             try {
-                email = email.toLowerCase();
+                if (email) email = email.toLowerCase();
                 const role = (req.body.role?.toLowerCase().trim() == "admin") ? 1 : 2;
                 const user = await User.create({email, password, roleId: role});
 
                 return done(null, user);
             } catch (error) {
-                console.log(error)
                 done(error);
             }
         }

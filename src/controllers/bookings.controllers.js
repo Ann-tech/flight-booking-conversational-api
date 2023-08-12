@@ -1,6 +1,9 @@
+const https = require('https');
+
 const { Booking } = require('../models/db.connect');
 const { Flight } = require('../models/db.connect');
-// const formatFlightData = require('../utils/formatFlightData')
+
+const paystackConfig = require('../config/paystackConfig');
 
 async function httpGetAllBookings(req, res, next) {
     try {
@@ -63,6 +66,8 @@ async function httpUpdateBookingStatus(req, res, next) {
 
         const { status } = req.body;
 
+        if (status === 'confirmed') return res.status(400).json({status: false, message: "Cannot update status until payment is made"});
+
         const booking = await Booking.update({ status }, {
             where: {
                 id,
@@ -77,10 +82,60 @@ async function httpUpdateBookingStatus(req, res, next) {
     }
 }
 
+async function httpMakePaymentById(req, res, next) {
+    const id = req.params.id;
+    const userId = req.user.id;
+    const email = req.user.email;
+
+    const booking = await Booking.findOne({
+        where: {
+            id,
+            userId
+        }
+    });
+
+    if (!booking) return res.status(404).json( {success: false, message: "Booking with such id doesn't exits"});
+
+    const paymentInfo = {
+        email,
+        amount: booking.totalPrice
+    }
+      
+    const request = https.request(paystackConfig, response => {
+        let data = ''
+        
+        response.on('data', (chunk) => {
+            data += chunk
+        });
+        
+        response.on('end', async () => {
+            try {
+                let obj = JSON.parse(data);
+                await Booking.update({ status: "confirmed" }, {
+                    where: {
+                        id,
+                        userId
+                    }
+                });
+                return res.status(200).json({success: true, message: "Payment successful", confirmationUrl: obj.data.authorization_url});
+            } catch(err) {
+                next(err);
+            }
+        })
+
+        response.on('error', error => {
+            console.error(error)
+        })
+    })
+    
+    request.write( JSON.stringify(paymentInfo) );
+    request.end()     
+}
 
 module.exports = {
     httpGetAllBookings,
     httpGetBookedFlight,
     httpBookFlight,
-    httpUpdateBookingStatus
+    httpUpdateBookingStatus,
+    httpMakePaymentById
 }

@@ -5,7 +5,8 @@ const {
     httpGetAllBookings, 
     httpGetBookedFlight, 
     httpBookFlight,
-    httpUpdateBookingStatus
+    httpUpdateBookingStatus,
+    httpMakePaymentById
 } = require('../controllers/bookings.controllers');
 
 
@@ -13,6 +14,7 @@ BookingRouter.get('/', httpGetAllBookings);
 BookingRouter.get('/:id', httpGetBookedFlight);
 BookingRouter.post('/', httpBookFlight);
 BookingRouter.patch('/:id', httpUpdateBookingStatus);
+BookingRouter.get('/pay/:id', httpMakePaymentById)
 
 
 module.exports = BookingRouter;

@@ -32,9 +32,6 @@ app.use( helmet() );
 //connect to db
 const { db } = require('./models/db.connect');
 
-app.use('/api/v1/webhook', webhookRoute);
-app.use('/api/v1/conversations', conversationRoute)
-
 // Signup and login authentication middleware
 require("./authentication/auth");
 
@@ -46,6 +43,10 @@ app.use('/api/v1/flights', passport.authenticate('jwt', { session: false }), Fli
 
 //bookings router
 app.use('/api/v1/bookings', passport.authenticate('jwt', { session: false }), BookingRouter);
+
+app.use('/api/v1/conversations', conversationRoute);
+
+app.use('/api/v1/webhook', webhookRoute);
 
 app.get('/', (req, res, next) => {
     res.json( {success: true, message: 'Welcome to our booking api'});
